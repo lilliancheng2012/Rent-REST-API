@@ -1,11 +1,15 @@
 package nz.co.zufang.service;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,25 +32,63 @@ public class UserServiceTest {
 	@Autowired
 	UserService userService;
 	
-	@Test
-    public void testFindUserByUsername() {
-		String username ="eeeeee";
-		User user = userService.findUserByUsername(username);
-		assertNotNull(user);
-		assertEquals("eeeeee",user.getUsername());
+	@Before
+    public void testRegister() {
+		String username ="Lillian";
+		String password ="Password";
+		String email = "linlin.cheng2012@gmail.com";
+		String imAccount = "634500997";
+		String phone = "0222762000";
+		String address = "242 Penrose Rd";
+		//TODO
+		GenericResponse response = userService.register(username, password, email, imAccount, phone, address);
+		assertEquals("1001",response.getCode());
+		assertEquals("Register successfully",response.getMessage());
+		assertNotNull(response.getToken());
+		//TODO
+		try{			
+			userService.register(username, password, email, imAccount, phone, address);
+		}catch(UserExistException e){
+			assertEquals("The user is already registered.",e.getMessage());
+		}
+		//TODO
+		try{
+			userService.register("A", password, email, imAccount, phone, address);
+		}catch(UserExistException e){
+			assertEquals("The user is already registered.",e.getMessage());
+		}
     }
 	
+	@Test
+    public void testFindUserByUsername() {
+		//TODO
+		String username ="Lillian";
+		User user = userService.findUserByUsername(username);
+		assertNotNull(user);
+		assertEquals("Lillian",user.getUsername());
+    }
+	
+	@Test
+    public void testFindUser() {
+		//TODO
+		String username ="Lillian";
+		User user1 = userService.findUserByUsername(username);
+		User user = userService.findUser(user1.getUid());
+		assertEquals("Lillian",user.getUsername());
+    }
 	
 	@Test
     public void testAuthentication() {
-		String username ="eeeeee";
-		String password ="eeeeee";
+		//TODO
+		String username ="Lillian";
+		String password ="Password";
 		GenericResponse response = userService.authentication(username, password);
 		assertNotNull(response);
 		assertEquals("1000",response.getCode());
+		//TODO
 		try{
-			String username1 ="123";
-			String password1 ="123";
+			String username1 ="NotExistUser";
+			String password1 ="Password";
 			userService.authentication(username1, password1);
 		}catch(NotFoundException e){
 			assertEquals("The resource you requested does not exist",e.getMessage());
@@ -54,73 +96,38 @@ public class UserServiceTest {
     }
 	
 	@Test
-    public void testRegister() {
-		String username ="55";
-		String password ="555";
-		String email = "555@qq.com";
-		String imAccount = "555";
-		String phone = "555";
-		String address = "555 Rd";
-		GenericResponse response = userService.register(username, password, email, imAccount, phone, address);
-		assertEquals("1001",response.getCode());
-		assertEquals("Register successfully",response.getMessage());
-		assertNotNull(response.getToken());
-		try{			
-			userService.register(username, password, email, imAccount, phone, address);
-		}catch(UserExistException e){
-			assertEquals("The user is already registered.",e.getMessage());
-		}
-		try{
-			userService.register("aa", password, email, imAccount, phone, address);
-		}catch(UserExistException e){
-			assertEquals("The user is already registered.",e.getMessage());
-		}
-    }
-	
-	@Test
     public void testUpdateUser() {
-		User user = userService.findUser("4028d08155e90e7c0155e930f5070000");
+		//TODO
+		String username ="Lillian";
+		User user = userService.findUserByUsername(username);
 		UserUpdateRequest updateUserRequest = new UserUpdateRequest();
 		updateUserRequest.setUid(user.getUid());
+		updateUserRequest.setUsername(user.getUsername());
 		updateUserRequest.setEmail("000@qq.com");
-		updateUserRequest.setUsername("lin");
 		updateUserRequest.setPassword("qazwsx");
 		updateUserRequest.setImAccount("0000");
-		updateUserRequest.setPhone("00000");
+		updateUserRequest.setPhone("0222762111");
 		updateUserRequest.setAddress("242 Penrose");
-		/*updateUserRequest.setEmail(user.getEmail());
-		updateUserRequest.setUsername(user.getUsername());
-		updateUserRequest.setPassword(user.getPassword());
-		updateUserRequest.setImAccount(user.getImAccount());
-		updateUserRequest.setPhone(user.getPhone());
-		updateUserRequest.setAddress(user.getAddress());*/
 		User user1 = userService.updateUser(updateUserRequest);
 		assertEquals("000@qq.com",user1.getEmail());
-		assertEquals("lin",user1.getUsername());
 		assertEquals("qazwsx",user1.getPassword());
 		assertEquals("0000",user1.getImAccount());
-		assertEquals("00000",user1.getPhone());
+		assertEquals("0222762111",user1.getPhone());
 		assertEquals("242 Penrose",user1.getAddress());
     }
 	
 	@Test
+    public void testGetAllUser() {
+		//TODO
+		List<User> all = userService.getAllUser();
+		assertFalse(all.isEmpty());
+    }
+	
+	@After
     public void testDeleteUser() {
-		String username = "55";
+		String username = "Lillian";
 		User user = userService.findUserByUsername(username);
 		Boolean isDeleted = userService.deleteUser(user.getUid());
 		assertTrue(isDeleted);
-    }
-	
-	@Test
-    public void testGetAllUser() {
-		List<User> aa = userService.getAllUser();
-		assertEquals(4,aa.size());
-    }
-	
-	@Test
-    public void testFindUser() {
-		String id = "4028d08155e90e7c0155e930f5070000";
-		User user = userService.findUser(id);
-		assertEquals("lin",user.getUsername());
     }
 }

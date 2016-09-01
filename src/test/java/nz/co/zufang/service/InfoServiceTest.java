@@ -1,10 +1,14 @@
 package nz.co.zufang.service;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,25 +29,19 @@ public class InfoServiceTest {
 	@Autowired
 	InfoService infoService;
 	
-	@Test
-    public void testGetInfoById() {
-		String id = "4028d08155ee51000155ee5211380003";
-		Info info = infoService.getInfoById(id);
-		assertEquals("string",info.getAddress());
-    }
-	
-	@Test
+	@Before
     public void testCreateInfo() {
+		//TODO
 		InfoCreateRequest infoCreateRequest= new InfoCreateRequest();
-		infoCreateRequest.setTitle("House rent in Penrose");
-		infoCreateRequest.setKeywords("house in Penrose");
+		infoCreateRequest.setTitle("House rent");
+		infoCreateRequest.setKeywords("Penrose");
 		infoCreateRequest.setDescription("good house in Penrose");
-		infoCreateRequest.setLinkMan("Mr. aa");
+		infoCreateRequest.setLinkMan("Mr. a");
 		infoCreateRequest.setFee(120.00);
-		infoCreateRequest.setEmail("aaa@qq.com");
-		infoCreateRequest.setQq("aaa");
-	    infoCreateRequest.setPhone("12345");
-	    infoCreateRequest.setAddress("242 Penrose");
+		infoCreateRequest.setEmail("linlin.cheng2012@gmail.com");
+		infoCreateRequest.setQq("123");
+	    infoCreateRequest.setPhone("0222762000");
+	    infoCreateRequest.setAddress("242 Penrose Rd");
 	    infoCreateRequest.setMapPoint("Auckland");
 	    infoCreateRequest.setPostArea("1060");
 	    Boolean isCreated = infoService.createInfo(infoCreateRequest);
@@ -51,49 +49,15 @@ public class InfoServiceTest {
     }
 	
 	@Test
-    public void testUpdateInfo() {
-		Info info = infoService.getInfoById("4028d08155ee51000155ee5210220002");
-		InfoUpdateRequest infoUpdateRequest = new InfoUpdateRequest();
-		infoUpdateRequest.setId(info.getId());
-		infoUpdateRequest.getKeywords();
-		infoUpdateRequest.getDescription();
-		infoUpdateRequest.getLinkMan();
-		infoUpdateRequest.getFee();
-		infoUpdateRequest.getEmail();
-		infoUpdateRequest.getQq();
-		infoUpdateRequest.getPhone();
-		infoUpdateRequest.getAddress();
-		infoUpdateRequest.getMapPoint();
-		infoUpdateRequest.getPostArea();
-		infoUpdateRequest.setTitle("rent house");
-		infoUpdateRequest.setKeywords("penrose");
-		infoUpdateRequest.setDescription("rent home in penrose");
-		infoUpdateRequest.setLinkMan("bb");
-		infoUpdateRequest.setFee(200.00);
-		infoUpdateRequest.setEmail("bbb@qq.com");
-		infoUpdateRequest.setQq("bbb");
-		infoUpdateRequest.setPhone("111");
-		infoUpdateRequest.setAddress("242 Penrose rd mt wellington.");
-		infoUpdateRequest.setMapPoint("Wellington in auckland");
-		infoUpdateRequest.setPostArea("1061");
-		Boolean isUpdated = infoService.updateInfo(infoUpdateRequest);
-		assertTrue(isUpdated);
+    public void testGetInfoById() {
+		//TODO
+		String phone = "0222762000";
+        Info info = infoService.findInfoByPhone(phone);
+		Info info1 = infoService.getInfoById(info.getId());
+		assertEquals("242 Penrose Rd",info1.getAddress());
     }
 	
-	@Test
-    public void testDeleteInfo() {
-		String phone = "12345";
-        Info info = infoService.findInfoByPhone(phone);
-		Boolean isDeleted = infoService.deleteInfo(info.getId());
-		assertTrue(isDeleted);
-	}
-	
-	@Test
-    public void testGetAllInfo() {
-		List<Info> all = infoService.getAllInfo();
-		assertEquals(31,all.size());
-	}
-	
+	@Ignore
 	@Test
     public void testGetInfo() {
 		Info info = new Info();
@@ -106,5 +70,43 @@ public class InfoServiceTest {
 		info.setType("single rent");
 		List<Info> aa = infoService.getInfo(info, 1);
 		assertEquals(1,aa.size());
+	}
+	
+	@Test
+    public void testUpdateInfo() {
+		//TODO
+		String phone = "0222762000";
+        Info info = infoService.findInfoByPhone(phone);
+		InfoUpdateRequest infoUpdateRequest = new InfoUpdateRequest();
+		infoUpdateRequest.setId(info.getId());
+		infoUpdateRequest.setTitle("rent house");
+		infoUpdateRequest.setKeywords("Penrose");
+		infoUpdateRequest.setDescription("rent home in penrose");
+		infoUpdateRequest.setLinkMan("Mr.b");
+		infoUpdateRequest.setFee(200.00);
+		infoUpdateRequest.setEmail("bbb@qq.com");
+		infoUpdateRequest.setQq("111");
+		infoUpdateRequest.setPhone(info.getPhone());
+		infoUpdateRequest.setAddress("242 Penrose Rd MT Wellington.");
+		infoUpdateRequest.setMapPoint("Wellington in Auckland");
+		infoUpdateRequest.setPostArea("1061");
+		Boolean isUpdated = infoService.updateInfo(infoUpdateRequest);
+		assertTrue(isUpdated);
+    }
+	
+	@Test
+    public void testGetAllInfo() {
+		//TODO
+		List<Info> all = infoService.getAllInfo();
+		assertFalse(all.isEmpty());
+	}
+	
+	@After
+    public void testDeleteInfo() {
+		//TODO
+		String phone = "0222762000";
+        Info info = infoService.findInfoByPhone(phone);
+		Boolean isDeleted = infoService.deleteInfo(info.getId());
+		assertTrue(isDeleted);
 	}
 }
