@@ -13,4 +13,7 @@ import nz.co.zufang.model.Info;
 public interface InfoRepository extends JpaRepository<Info, String>,JpaSpecificationExecutor<Info> {
 	
 	List<Info> findByTitleNotNull(String title, Pageable pageable);
+	
+	Info findInfoByPhone(String phone);
+	
 }

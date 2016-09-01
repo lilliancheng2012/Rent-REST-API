@@ -91,4 +91,10 @@ public class InfoServiceImpl implements InfoService{
 		List<Info> infos = infoRepository.findAll(infoSpec,request).getContent();
 		return infos;
 	}
+	
+	@Override
+	public Info findInfoByPhone(String phone){
+		Info info = infoRepository.findInfoByPhone(phone);
+		return info;
+	}
 }

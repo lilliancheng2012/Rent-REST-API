@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,8 +113,8 @@ public class UserServiceTest {
 	
 	@Test
     public void testGetAllUser() {
-		userService.getAllUser();
-		
+		List<User> aa = userService.getAllUser();
+		assertEquals(4,aa.size());
     }
 	
 	@Test

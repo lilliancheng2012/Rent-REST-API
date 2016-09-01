@@ -20,4 +20,6 @@ public interface InfoService {
 	
 	List<Info> getInfo(Info info, int pageNumber);
 	
+	Info findInfoByPhone(String phone);
+	
 }
