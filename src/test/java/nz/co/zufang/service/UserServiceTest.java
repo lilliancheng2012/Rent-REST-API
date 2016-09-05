@@ -38,7 +38,7 @@ public class UserServiceTest {
 		String address = "242 Penrose Rd";
 		//To test register new user successfully
 		GenericResponse response = userService.register(username, password, email, imAccount, phone, address);
-		assertEquals("1001",response.getCode());
+		assertEquals("1000",response.getCode());
 		assertEquals("Register successfully",response.getMessage());
 		assertNotNull(response.getToken());
 		//To verify the exception message when registered by the same username
