@@ -66,15 +66,18 @@ public class UserServiceImpl implements UserService {
 		// TODO token would be created by Oauth2
 		UUID uuid = UUID.randomUUID();
 		GenericResponse response = new GenericResponse();
-		response.setCode("1001");
+		response.setCode("1000");
+		response.setUid(user.getUid());
 		response.setMessage("Register successfully");
 		response.setToken(uuid.toString());
+		
 		return response;
 	}
 
 	@Override
 	public User updateUser(UserUpdateRequest userUpdateRequest) {
 		User user = userRepository.findOne(userUpdateRequest.getUid());
+		user.setUid(userUpdateRequest.getUid());
 		user.setUsername(userUpdateRequest.getUsername());
 		user.setPassword(userUpdateRequest.getPassword());
 		user.setEmail(userUpdateRequest.getEmail());

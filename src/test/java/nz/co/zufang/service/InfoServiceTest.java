@@ -1,8 +1,6 @@
 package nz.co.zufang.service;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.List;
 
@@ -31,7 +29,7 @@ public class InfoServiceTest {
 	
 	@Before
     public void testCreateInfo() {
-		//TODO
+		//To test create new info success with valid inputs
 		InfoCreateRequest infoCreateRequest= new InfoCreateRequest();
 		infoCreateRequest.setTitle("House rent");
 		infoCreateRequest.setKeywords("Penrose");
@@ -50,7 +48,7 @@ public class InfoServiceTest {
 	
 	@Test
     public void testGetInfoById() {
-		//TODO
+		//To test find the info by it's id
 		String phone = "0222762000";
         Info info = infoService.findInfoByPhone(phone);
 		Info info1 = infoService.getInfoById(info.getId());
@@ -74,7 +72,7 @@ public class InfoServiceTest {
 	
 	@Test
     public void testUpdateInfo() {
-		//TODO
+		//To test update the info's details after find it by phone number
 		String phone = "0222762000";
         Info info = infoService.findInfoByPhone(phone);
 		InfoUpdateRequest infoUpdateRequest = new InfoUpdateRequest();
@@ -96,14 +94,14 @@ public class InfoServiceTest {
 	
 	@Test
     public void testGetAllInfo() {
-		//TODO
+		//To test get the list for all info
 		List<Info> all = infoService.getAllInfo();
 		assertFalse(all.isEmpty());
 	}
 	
 	@After
     public void testDeleteInfo() {
-		//TODO
+		//To test delete the info success after find it by phone number
 		String phone = "0222762000";
         Info info = infoService.findInfoByPhone(phone);
 		Boolean isDeleted = infoService.deleteInfo(info.getId());

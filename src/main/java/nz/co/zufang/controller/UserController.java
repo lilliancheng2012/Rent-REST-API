@@ -26,19 +26,17 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ResponseEntity<GenericResponse> login(@RequestBody BasicUserLogin userLogin) {
-		GenericResponse response = userService.authentication(userLogin.getUserName(), userLogin.getPassword());
-		return new ResponseEntity<GenericResponse>(response, HttpStatus.OK);
-	}
-	
-	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseEntity<GenericResponse> register(@RequestBody BasicUserReg userReg) {
 		GenericResponse response = userService.register(userReg.getUsername(), userReg.getPassword(), userReg.getEmail(), userReg.getImAccount(), userReg.getPhone(), userReg.getAddress());
 		return new ResponseEntity<GenericResponse>(response, HttpStatus.OK);
 	}
-
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ResponseEntity<GenericResponse> login(@RequestBody BasicUserLogin userLogin) {
+		GenericResponse response = userService.authentication(userLogin.getUserName(), userLogin.getPassword());
+		return new ResponseEntity<GenericResponse>(response, HttpStatus.OK);
+	}
 	
 	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
 	public User updateUser(@RequestBody UserUpdateRequest updateUser) {
@@ -46,13 +44,11 @@ public class UserController {
 		return user;
 	}
 	
-	
 	@RequestMapping(value = "/deleteUser/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Boolean> deleteUser(@PathVariable String id){
 		Boolean isDeleted = userService.deleteUser(id);
     	return new ResponseEntity<Boolean>(isDeleted, HttpStatus.OK);
 	}
-	
 	
 	@RequestMapping(value = "/listUsers",method = RequestMethod.GET)
     public List<User> listUser(){

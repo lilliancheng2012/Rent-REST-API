@@ -1,15 +1,11 @@
 package nz.co.zufang.service;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,18 +36,18 @@ public class UserServiceTest {
 		String imAccount = "634500997";
 		String phone = "0222762000";
 		String address = "242 Penrose Rd";
-		//TODO
+		//To test register new user successfully
 		GenericResponse response = userService.register(username, password, email, imAccount, phone, address);
 		assertEquals("1001",response.getCode());
 		assertEquals("Register successfully",response.getMessage());
 		assertNotNull(response.getToken());
-		//TODO
+		//To verify the exception message when registered by the same username
 		try{			
 			userService.register(username, password, email, imAccount, phone, address);
 		}catch(UserExistException e){
 			assertEquals("The user is already registered.",e.getMessage());
 		}
-		//TODO
+		//Verify the exception message when registered by the same email
 		try{
 			userService.register("A", password, email, imAccount, phone, address);
 		}catch(UserExistException e){
@@ -61,7 +57,7 @@ public class UserServiceTest {
 	
 	@Test
     public void testFindUserByUsername() {
-		//TODO
+		//To test find user by the username
 		String username ="Lillian";
 		User user = userService.findUserByUsername(username);
 		assertNotNull(user);
@@ -70,7 +66,7 @@ public class UserServiceTest {
 	
 	@Test
     public void testFindUser() {
-		//TODO
+		//To test find user by user id
 		String username ="Lillian";
 		User user1 = userService.findUserByUsername(username);
 		User user = userService.findUser(user1.getUid());
@@ -79,13 +75,13 @@ public class UserServiceTest {
 	
 	@Test
     public void testAuthentication() {
-		//TODO
+		//To test login successfully with correct username and password
 		String username ="Lillian";
 		String password ="Password";
 		GenericResponse response = userService.authentication(username, password);
 		assertNotNull(response);
 		assertEquals("1000",response.getCode());
-		//TODO
+		//To test the exception message when login with user which is not exist 
 		try{
 			String username1 ="NotExistUser";
 			String password1 ="Password";
@@ -97,7 +93,7 @@ public class UserServiceTest {
 	
 	@Test
     public void testUpdateUser() {
-		//TODO
+		//To test update user information and verification
 		String username ="Lillian";
 		User user = userService.findUserByUsername(username);
 		UserUpdateRequest updateUserRequest = new UserUpdateRequest();
@@ -118,13 +114,14 @@ public class UserServiceTest {
 	
 	@Test
     public void testGetAllUser() {
-		//TODO
+		//To test get list for all users 
 		List<User> all = userService.getAllUser();
 		assertFalse(all.isEmpty());
     }
 	
 	@After
     public void testDeleteUser() {
+		//To test delete the user success after find it
 		String username = "Lillian";
 		User user = userService.findUserByUsername(username);
 		Boolean isDeleted = userService.deleteUser(user.getUid());
