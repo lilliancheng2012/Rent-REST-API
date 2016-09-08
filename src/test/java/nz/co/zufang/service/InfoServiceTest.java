@@ -42,8 +42,8 @@ public class InfoServiceTest {
 	    infoCreateRequest.setAddress("242 Penrose Rd");
 	    infoCreateRequest.setMapPoint("Auckland");
 	    infoCreateRequest.setPostArea("1060");
-	    Boolean isCreated = infoService.createInfo(infoCreateRequest);
-		assertTrue(isCreated);
+	    Info info = infoService.createInfo(infoCreateRequest);
+	    assertEquals("linlin.cheng2012@gmail.com",info.getEmail());
     }
 	
 	@Test

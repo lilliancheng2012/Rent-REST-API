@@ -8,11 +8,11 @@ import nz.co.zufang.model.Info;
 
 public interface InfoService {
 	
-	Boolean createInfo(InfoCreateRequest infoCreateRequest);
+	public Info createInfo(InfoCreateRequest infoCreateRequest);
 	
-	Boolean deleteInfo(String id);
+	public Boolean deleteInfo(String id);
 	
-	Boolean updateInfo(InfoUpdateRequest infoUpdateRequest);
+	public Boolean updateInfo(InfoUpdateRequest infoUpdateRequest);
 	
 	Info getInfoById(String id);	
 	
@@ -21,5 +21,5 @@ public interface InfoService {
 	List<Info> getInfo(Info info, int pageNumber);
 	
 	Info findInfoByPhone(String phone);
-	
+	//GenericResponse
 }

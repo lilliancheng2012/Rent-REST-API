@@ -26,10 +26,9 @@ public class InfoServiceImpl implements InfoService{
 	public Info getInfoById(String id) {
 		return infoRepository.findOne(id);
 	}
-
 	
 	@Override
-	public Boolean createInfo(InfoCreateRequest infoCreateRequest) {
+	public Info createInfo(InfoCreateRequest infoCreateRequest) {
 		Info info = new Info();
 		info.setTitle(infoCreateRequest.getTitle());
 		info.setKeywords(infoCreateRequest.getKeywords());
@@ -45,11 +44,7 @@ public class InfoServiceImpl implements InfoService{
 	    info.setPostDate(new Date());
 	    info.setEndDate(new Date());
 		info = infoRepository.save(info);
-		if(info.getId()!=null){
-			return true;
-		}else{
-			return false;
-		}
+		return info;
 	}
 
 	@Override

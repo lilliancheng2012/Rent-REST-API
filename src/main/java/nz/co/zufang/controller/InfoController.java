@@ -31,9 +31,9 @@ public class InfoController {
     
     
     @RequestMapping(value = "/createInfo/", method = RequestMethod.POST)
-    public ResponseEntity<Boolean> createInfo(@RequestBody InfoCreateRequest infoCreateRequest){
-    	Boolean isSaved = infoService.createInfo(infoCreateRequest);
-    	return new ResponseEntity<Boolean>(isSaved, HttpStatus.OK);
+    public ResponseEntity<Info> createInfo(@RequestBody InfoCreateRequest infoCreateRequest){
+    	Info info = infoService.createInfo(infoCreateRequest);
+    	return new ResponseEntity<Info>(info, HttpStatus.OK);
     }
     
     
