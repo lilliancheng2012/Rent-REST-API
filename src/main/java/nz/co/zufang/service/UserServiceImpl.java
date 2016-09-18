@@ -39,6 +39,7 @@ public class UserServiceImpl implements UserService {
 		response.setCode("1000");
 		response.setMessage("Login successfully");
 		response.setToken(uuid.toString());
+		response.setUid(user.getUid());
 		return response;
 	}
 
