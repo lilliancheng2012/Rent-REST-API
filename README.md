@@ -1,31 +1,27 @@
-# kiwi-fang-net 
+# Rest-Rent-API 
 
-This project was generated with the [Angular Full-Stack Generator](https://github.com/DaftMonk/generator-angular-fullstack) version 3.3.0.
+This project provides Backend APIs for properties rental websites , IOS and Android devices.
 
 ## Getting Started
 
 ### Prerequisites
 
-- [Git](https://git-scm.com/)
-- [Node.js and npm](nodejs.org) Node ^4.2.3, npm ^2.14.7
-- [Bower](bower.io) (`npm install --global bower`)
-- [Grunt](http://gruntjs.com/) (`npm install --global grunt-cli`)
-- [MongoDB](https://www.mongodb.org/) - Keep a running daemon with `mongod`
+- [Git](https://git-scm.com/) Source Code Management
+- [JDK8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) JDK 1.8
+- [Spring Boot](http://projects.spring.io/spring-boot/) Get App up and running as quickly as possible.
+- [Maven 3](https://maven.apache.org/download.cgi) Maven Build Tool
+- [Junit 4](http://junit.org/junit4/) Unit Testing Tool
+- [Mysql](https://www.mysql.com/) - Databse
 
 ### Developing
 
-1. Run `npm install` to install server dependencies.
+1. Run `mvn clean install` to install dependencies.
 
-2. Run `bower install` to install front-end dependencies.
+2. Run `mvn clean test` to run Junit test cases.
 
-3. Run `mongod` in a separate shell to keep an instance of the MongoDB Daemon running
+## Testing Coverage Report
 
-4. Run `grunt serve` to start the development server. It should automatically open the client in your browser when ready.
+Run `mvn jacoco:report` to generate the code coverage report after executing the unit test cases.
+![](https://raw.githubusercontent.com/lilliancheng2012/lilliancheng2012.github.io/master/public/img/posts/18-09-16/Jacoco.png)
 
-## Build & development
 
-Run `grunt build` for building and `grunt serve` for preview.
-
-## Testing
-
-Running `npm test` will run the unit tests with karma.

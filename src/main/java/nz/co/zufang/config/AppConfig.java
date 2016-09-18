@@ -23,11 +23,11 @@ public class AppConfig {
     @Bean
     ApiInfo apiInfo() {
         ApiInfo apiInfo = new ApiInfo(
-        "Zufang API",
-        "Draft version of the RIO OTT API",
+        "Properties Rental APIs",
+        "Draft version of the Properties Rental APIs",
         "1.0.0",
         null,
-        "davidli8410@gmail.com",
+        "lillian.cheng2012@gmail.com",
         null,
         null );
         return apiInfo;
