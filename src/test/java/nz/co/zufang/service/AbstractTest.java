@@ -30,7 +30,7 @@ public class AbstractTest {
 		Gson gson = new Gson();
 		String body = gson.toJson(user);
 		
-		genericResponse =  expect()
+		genericResponse = expect()
 		.statusCode(200)
 		.given()
         .contentType("application/json")

@@ -15,74 +15,74 @@ public class Info{
     @Column(name = "ID", unique = true)
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
-    private String id;
+    public String id;
     @Column(name = "TITLE")
-    private String title;
+    public String title;
     @Column(name = "CONTENT")
-    private String content;
+    public String content;
     @Column(name = "THUMB")
-    private String thumb;
+    public String thumb;
     @Column(name = "KEYWORDS")
-    private String keywords;
+    public String keywords;
     @Column(name = "DESCRIPTION")
-    private String description;
+    public String description;
     @Column(name = "LINKMAN")
-    private String linkMan;
+    public String linkMan;
     @Column(name = "FEE")
-    private Double fee;
+    public Double fee;
     @Column(name = "EMAIL")
-    private String email;
+    public String email;
     @Column(name = "QQ")
-    private String qq;
+    public String qq;
     @Column(name = "PHONE")
-    private String phone;
+    public String phone;
     @Column(name = "ADDRESS")
-    private String address;
+    public String address;
     @Column(name = "MAP_POINT")
-    private String mapPoint;
+    public String mapPoint;
     @Column(name = "POST_AREA")
-    private String postArea;
+    public String postArea;
     @Column(name = "POST_DATE")
-    private Date postDate;
+    public Date postDate;
     @Column(name = "END_DATE")
-    private Date endDate;
+    public Date endDate;
     @Column(name = "IP")
     private String ip;
     @Column(name = "CLICK")
-    private int click;
+    public int click;
     @Column(name = "IS_PRO")
-    private boolean isPro;
+    public boolean isPro;
     @Column(name = "IS_TOP")
-    private boolean isTop;
+    public boolean isTop;
     @Column(name = "TOP_TYPE")
-    private String topType;
+    public String topType;
     @Column(name = "IS_CHECK")
-    private boolean isCheck;
+    public boolean isCheck;
 
     
     @Column(name = "CITY")
-    private String city;
+    public String city;
     
     @Column(name = "DISTRICT")
-    private String district;
+    public String district;
     
     @Column(name = "SUBURB")
-    private String suburb;
+    public String suburb;
     
     @Column(name = "DURATION")
-    private String duration;
+    public String duration;
     
     @Column(name = "MINPRICE")
-    private String minprice;
+    public String minprice;
     
     @Column(name = "MAXPRICE")
-    private String maxprice;
+    public String maxprice;
     
     @Column(name = "PRICE")
-    private double price;
+    public double price;
     
     @Column(name = "TYPE")
-    private String type;
+    public String type;
 
     public String getId() {
 		return id;
@@ -324,6 +324,4 @@ public class Info{
 		this.price = price;
 	}
 
-    
-    
 }

@@ -1,16 +1,16 @@
 package nz.co.zufang.service;
 
 import static io.restassured.RestAssured.given;
-
 import org.junit.Test;
 
-public class UserListTest {
-
+public class InfoListAllTest {
+	
 	@Test
-    public void testUserList() {
+	public void testInfoListAll() {
+		
 		given()
-        .when().get("http://localhost:8080/api/rent/listUsers").then()
+        .when().get("http://localhost:8080/api/list").then()
         .statusCode(200);
-    }
+	}
 	
 }
