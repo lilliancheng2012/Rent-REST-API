@@ -17,7 +17,7 @@ import nz.co.zufang.model.User;
 import nz.co.zufang.service.UserService;
 
 /**
- * Created by Mark on 2/25/2016.
+ * Created by Lillian on 2/25/2016.
  */
 @RestController
 @RequestMapping("/rent")

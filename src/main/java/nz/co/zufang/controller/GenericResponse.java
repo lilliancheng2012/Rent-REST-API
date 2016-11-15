@@ -1,7 +1,7 @@
 package nz.co.zufang.controller;
 
 /**
- * Created by Mark on 2/25/2016.
+ * Created by Lillian on 2/25/2016.
  */
 public class GenericResponse {
     String code;

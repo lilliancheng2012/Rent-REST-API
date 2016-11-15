@@ -13,7 +13,7 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
- * Created by Mark on 2/25/2016.
+ * Created by Lillian on 2/25/2016.
  */
 @Entity
 @Table(name = "TBL_USER")

@@ -1,12 +1,17 @@
 package nz.co.zufang.model;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
 /**
- * Created by Mark on 2/25/2016.
+ * Created by Lillian on 2/25/2016.
  */
 @Entity
 @Table(name = "TBL_INFO")
