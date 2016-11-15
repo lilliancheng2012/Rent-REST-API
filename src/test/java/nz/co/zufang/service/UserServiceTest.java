@@ -1,6 +1,9 @@
 package nz.co.zufang.service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -18,6 +21,7 @@ import nz.co.zufang.controller.GenericResponse;
 import nz.co.zufang.controller.UserUpdateRequest;
 import nz.co.zufang.exception.NotFoundException;
 import nz.co.zufang.exception.UserExistException;
+import nz.co.zufang.model.BasicUserReg;
 import nz.co.zufang.model.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -30,26 +34,29 @@ public class UserServiceTest {
 	
 	@Before
     public void testRegister() {
-		String username ="Lillian";
-		String password ="Password";
-		String email = "linlin.cheng2012@gmail.com";
-		String imAccount = "634500997";
-		String phone = "0222762000";
-		String address = "242 Penrose Rd";
+		BasicUserReg user = new BasicUserReg();
+		user.setUsername("Lillian");
+		user.setPassword("Password");
+		user.setEmail("linlin.cheng2012@gmail.com");
+		user.setImAccount("634500997");
+		user.setPhone("0222762000");
+		user.setAddress("242 Penrose Rd");
+		
 		//To test register new user successfully
-		GenericResponse response = userService.register(username, password, email, imAccount, phone, address);
+		GenericResponse response = userService.register(user);
 		assertEquals("1000",response.getCode());
 		assertEquals("Register successfully",response.getMessage());
 		assertNotNull(response.getToken());
-		//To verify the exception message when registered by the same username
+		//To verify the exception message when registered by the same user name
 		try{			
-			userService.register(username, password, email, imAccount, phone, address);
+			userService.register(user);
 		}catch(UserExistException e){
 			assertEquals("The user is already registered.",e.getMessage());
 		}
 		//Verify the exception message when registered by the same email
 		try{
-			userService.register("A", password, email, imAccount, phone, address);
+			user.setUsername("Lillian2");
+			userService.register(user);
 		}catch(UserExistException e){
 			assertEquals("The user is already registered.",e.getMessage());
 		}
@@ -57,7 +64,7 @@ public class UserServiceTest {
 	
 	@Test
     public void testFindUserByUsername() {
-		//To test find user by the username
+		//To test find user by the user name
 		String username ="Lillian";
 		User user = userService.findUserByUsername(username);
 		assertNotNull(user);
@@ -75,7 +82,7 @@ public class UserServiceTest {
 	
 	@Test
     public void testAuthentication() {
-		//To test login successfully with correct username and password
+		//To test login successfully with correct user name and password
 		String username ="Lillian";
 		String password ="Password";
 		GenericResponse response = userService.authentication(username, password);

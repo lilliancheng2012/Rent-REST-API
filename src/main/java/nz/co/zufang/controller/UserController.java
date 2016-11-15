@@ -28,7 +28,7 @@ public class UserController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseEntity<GenericResponse> register(@RequestBody BasicUserReg userReg) {
-		GenericResponse response = userService.register(userReg.getUsername(), userReg.getPassword(), userReg.getEmail(), userReg.getImAccount(), userReg.getPhone(), userReg.getAddress());
+		GenericResponse response = userService.register(userReg);
 		return new ResponseEntity<GenericResponse>(response, HttpStatus.OK);
 	}
 	

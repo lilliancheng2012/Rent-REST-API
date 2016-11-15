@@ -4,14 +4,31 @@ import static io.restassured.RestAssured.given;
 
 import org.junit.Test;
 
+import com.google.gson.Gson;
+
+import nz.co.zufang.controller.UserUpdateRequest;
+
 public class UserUpdateTest extends AbstractTest{
 
 	@Test
     public void testUserUpdate(){
+		
+		UserUpdateRequest user = new UserUpdateRequest();
+		user.setUid(genericResponse.getUid());
+		user.setEmail("aa@qq.com");
+		user.setImAccount("wechat");
+		user.setAddress("string1");
+		user.setUsername("Test Name");
+		user.setPassword("string1");
+		user.setPhone("0222762000");
+		
+		Gson gson = new Gson();
+		String body = gson.toJson(user);
+		
 		given()
         .contentType("application/json")
-        .body("{\"address\": \"string1\",\"email\": \"string1\",\"imAccount\": \"string1\",\"password\": \"string1\",\"phone\": \"string1\",\"uid\": \"uid\",\"username\": \"string1\"}")
-        .when().post("http://localhost:8080/api/rent/register").then()
+        .body(body)
+        .when().post("http://localhost:8080/api/rent/updateUser").then()
         .statusCode(200);
 	}
 	

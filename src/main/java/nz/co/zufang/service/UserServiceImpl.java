@@ -10,6 +10,7 @@ import nz.co.zufang.controller.GenericResponse;
 import nz.co.zufang.controller.UserUpdateRequest;
 import nz.co.zufang.exception.NotFoundException;
 import nz.co.zufang.exception.UserExistException;
+import nz.co.zufang.model.BasicUserReg;
 import nz.co.zufang.model.User;
 import nz.co.zufang.repository.UserRepository;
 
@@ -44,24 +45,23 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public GenericResponse register(String username, String password, String email, String imAccount, String phone,
-			String address) {
+	public GenericResponse register(BasicUserReg basicUserReg) {
 
-		User tmpUser = userRepository.findByUsername(username);
+		User tmpUser = userRepository.findByUsername(basicUserReg.getUsername());
 		if (tmpUser != null)
 			throw new UserExistException();
 
-		User tmpEmail = userRepository.findByEmail(email);
+		User tmpEmail = userRepository.findByEmail(basicUserReg.getEmail());
 		if (tmpEmail != null)
 			throw new UserExistException();
 
 		User user = new User();
-		user.setUsername(username);
-		user.setPassword(password);
-		user.setEmail(email);
-		user.setImAccount(imAccount);
-		user.setPhone(phone);
-		user.setAddress(address);
+		user.setUsername(basicUserReg.getUsername());
+		user.setPassword(basicUserReg.getPassword());
+		user.setEmail(basicUserReg.getEmail());
+		user.setImAccount(basicUserReg.getImAccount());
+		user.setPhone(basicUserReg.getPhone());
+		user.setAddress(basicUserReg.getAddress());
 
 		user = userRepository.save(user);
 		// TODO token would be created by Oauth2
