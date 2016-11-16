@@ -1,7 +1,7 @@
 package nz.co.zufang.model;
 
 /**
- * Created by zhiyuan on 12/03/16.
+ * Created by Lillian on 12/03/16.
  */
 public class BasicUserLogin {
 //    private String email;
