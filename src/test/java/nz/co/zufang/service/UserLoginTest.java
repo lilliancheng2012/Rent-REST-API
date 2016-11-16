@@ -23,7 +23,7 @@ public class UserLoginTest extends AbstractTest{
 		given()
         .contentType("application/json")
         .body(body)
-        .when().post("http://localhost:8080/api/rent/login").then()
+        .when().post("http://localhost:8080/rent/login").then()
         .body("message",equalTo("Login successfully"))
         .statusCode(200);
     }

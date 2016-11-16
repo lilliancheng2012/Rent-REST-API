@@ -33,7 +33,7 @@ public class InfoUpdateTest extends AbstractInfoTest{
 		given()
 		.contentType("application/json")
         .body(body)
-        .when().post("http://localhost:8080/api/updateInfo/").then()
+        .when().post("http://localhost:8080/updateInfo/").then()
         .statusCode(200);
 	}
 

@@ -9,7 +9,7 @@ public class InfoListAllTest {
 	public void testInfoListAll() {
 		
 		given()
-        .when().get("http://localhost:8080/api/list").then()
+        .when().get("http://localhost:8080/list").then()
         .statusCode(200);
 	}
 	

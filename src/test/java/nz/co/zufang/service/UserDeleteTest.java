@@ -10,7 +10,7 @@ public class UserDeleteTest extends AbstractTest{
     public void testUserUpdate() {
 		given()
         .contentType("application/json")
-        .when().delete("http://localhost:8080/api/rent/deleteUser/" + genericResponse.getUid()).then()
+        .when().delete("http://localhost:8080/rent/deleteUser/" + genericResponse.getUid()).then()
         .statusCode(200);
 	}
 

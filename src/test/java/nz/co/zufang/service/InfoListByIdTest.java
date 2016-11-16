@@ -11,7 +11,7 @@ public class InfoListByIdTest extends AbstractInfoTest{
 	public void testInfoListByID() {
 		
 		given()
-        .when().get("http://localhost:8080/api/info/" + info.getId()).then()
+        .when().get("http://localhost:8080/info/" + info.getId()).then()
         .body("email",equalTo("lillian.cheng2012@gmail.com"))
         .statusCode(200);
 	}

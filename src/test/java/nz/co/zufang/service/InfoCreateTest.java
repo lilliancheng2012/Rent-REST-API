@@ -29,7 +29,7 @@ public class InfoCreateTest {
 		given()
         .contentType("application/json")
         .body(body)
-        .when().post("http://localhost:8080/api/createInfo/").then()
+        .when().post("http://localhost:8080/createInfo/").then()
         .body("email",equalTo("linlin.cheng2012@gmail.com"))
         .statusCode(200);
     }

@@ -28,7 +28,7 @@ public class UserRegisterTest {
 		given()
         .contentType("application/json")
         .body(body)
-        .when().post("http://localhost:8080/api/rent/register").then()
+        .when().post("http://localhost:8080/rent/register").then()
         .body("message",equalTo("Register successfully"))
         .statusCode(200);
     }

@@ -35,7 +35,7 @@ public class AbstractTest {
 		.given()
         .contentType("application/json")
         .body(body)
-        .post("http://localhost:8080/api/rent/register")
+        .post("http://localhost:8080/rent/register")
         .andReturn()
         .body()
         .as(GenericResponse.class);

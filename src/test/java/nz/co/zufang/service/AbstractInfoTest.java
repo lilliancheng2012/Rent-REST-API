@@ -37,7 +37,7 @@ public class AbstractInfoTest {
 		.given()
 		.contentType("application/json")
 		.body(body)
-		.post("http://localhost:8080/api/createInfo/")
+		.post("http://localhost:8080/createInfo/")
 		.andReturn()
 		.body()
 		.as(Info.class);

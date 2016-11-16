@@ -9,7 +9,7 @@ public class UserListTest {
 	@Test
     public void testUserList() {
 		given()
-        .when().get("http://localhost:8080/api/rent/listUsers").then()
+        .when().get("http://localhost:8080/rent/listUsers").then()
         .statusCode(200);
     }
 	

@@ -28,7 +28,7 @@ public class UserUpdateTest extends AbstractTest{
 		given()
         .contentType("application/json")
         .body(body)
-        .when().post("http://localhost:8080/api/rent/updateUser").then()
+        .when().post("http://localhost:8080/rent/updateUser").then()
         .statusCode(200);
 	}
 	
