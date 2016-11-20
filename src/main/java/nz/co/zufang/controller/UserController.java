@@ -54,4 +54,12 @@ public class UserController {
     public List<User> listUser(){
     	return userService.getAllUser();		
 	}
+	
+	@RequestMapping(value = "/findUserByUsername/{username}",method = RequestMethod.GET)
+	public User findUserByUsername(@PathVariable String username) {
+    	User user = userService.findUserByUsername(username);
+    	return user;
+	}
+	
+	
 }

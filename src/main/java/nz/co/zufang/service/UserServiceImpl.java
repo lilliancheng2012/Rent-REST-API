@@ -22,16 +22,11 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepository userRepository;
 	
-	@Override
-	public User findUserByUsername(String username) {
-		User user = userRepository.findByUsername(username);
-		return user;
-	}
 
 	@Override
 	public GenericResponse authentication(String username, String password) {
 		// TODO this would be replaced with Oauth2
-		User user = userRepository.findByUsernameAndPassword(username, password);
+		User user = userRepository.findUserByUsernameAndPassword(username, password);
 		if (user == null)
 			throw new NotFoundException();
 		// TODO token would be created by Oauth2
@@ -47,11 +42,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public GenericResponse register(BasicUserReg basicUserReg) {
 
-		User tmpUser = userRepository.findByUsername(basicUserReg.getUsername());
+		User tmpUser = userRepository.findUserByUsername(basicUserReg.getUsername());
 		if (tmpUser != null)
 			throw new UserExistException();
 
-		User tmpEmail = userRepository.findByEmail(basicUserReg.getEmail());
+		User tmpEmail = userRepository.findUserByEmail(basicUserReg.getEmail());
 		if (tmpEmail != null)
 			throw new UserExistException();
 
@@ -106,5 +101,10 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
-
+	@Override
+	public User findUserByUsername(String username) {
+		User user = userRepository.findUserByUsername(username);
+		return user;
+	}
+	
 }

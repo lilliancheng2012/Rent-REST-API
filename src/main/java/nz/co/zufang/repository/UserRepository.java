@@ -9,9 +9,9 @@ import nz.co.zufang.model.User;
 @Repository
 public interface UserRepository extends CrudRepository<User, String>{
 	
-	User findByUsernameAndPassword(String username, String password);
+	User findUserByUsernameAndPassword(String username, String password);
 	
-	User findByUsername(String username);
+	User findUserByUsername(String username);
 	
-	User findByEmail(String email);
+	User findUserByEmail(String email);
 }
