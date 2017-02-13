@@ -11,7 +11,8 @@ public class BasicUserReg {
     private String imAccount;
     private String phone;
     private String address;
-
+    private String authorities;
+    
     public String getEmail() {
         return email;
     }
@@ -57,4 +58,13 @@ public class BasicUserReg {
     public void setAddress(String address) {
         this.address = address;
     }
+
+	public String getAuthorities() {
+		return authorities;
+	}
+
+	public void setAuthorities(String authorities) {
+		this.authorities = authorities;
+	}
+    
 }

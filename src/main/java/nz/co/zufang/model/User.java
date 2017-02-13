@@ -57,6 +57,11 @@ public class User {
     private Date lastPostTime;
     @Column(name = "STATUS")
     private String status;
+    @Column(name = "AUTHORITIES")
+    private String authorities;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "LASTPASSWORDRESET")
+    private Date lastPasswordReset;
 
     public User() {
     }
@@ -196,5 +201,22 @@ public class User {
     public void setStatus(String status) {
         this.status = status;
     }
+
+	public String getAuthorities() {
+		return authorities;
+	}
+
+	public void setAuthorities(String authorities) {
+		this.authorities = authorities;
+	}
+
+	public Date getLastPasswordReset() {
+		return lastPasswordReset;
+	}
+
+	public void setLastPasswordReset(Date lastPasswordReset) {
+		this.lastPasswordReset = lastPasswordReset;
+	}
+	
 
 }

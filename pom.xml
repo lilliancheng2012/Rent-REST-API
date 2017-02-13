@@ -32,6 +32,8 @@
 		<allure.version>1.4.23.HOTFIX1</allure.version>
 		<aspectj.version>1.8.9</aspectj.version>
 		<compiler.version>1.7</compiler.version>
+		<jjwt.version>0.4</jjwt.version>
+		<jackson.version>2.5.3</jackson.version>
 
 	</properties>
 
@@ -49,16 +51,24 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.security.oauth</groupId>
-			<artifactId>spring-security-oauth2</artifactId>
+			<groupId>org.springframework.mobile</groupId>
+			<artifactId>spring-mobile-device</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>${jjwt.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>io.springfox</groupId>
@@ -83,12 +93,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.6.3</version>
-		</dependency>
-
-		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${slf4j-version}</version>
@@ -99,13 +103,6 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>${servlet-api-version}</version>
 		</dependency>
-
-		<dependency>
-			<groupId>org.jacoco</groupId>
-			<artifactId>jacoco-maven-plugin</artifactId>
-			<version>0.7.5.201505241946</version>
-		</dependency>
-
 
 		<dependency>
 			<groupId>junit</groupId>
