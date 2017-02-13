@@ -3,7 +3,7 @@ package nz.co.zufang.model;
 /**
  * Created by Lillian on 12/03/16.
  */
-public class BasicUserReg {
+public class UserCreate {
 	
     private String email;
     private String username;

@@ -4,14 +4,15 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import nz.co.zufang.controller.GenericResponse;
-import nz.co.zufang.controller.UserUpdateRequest;
 import nz.co.zufang.exception.NotFoundException;
 import nz.co.zufang.exception.UserExistException;
-import nz.co.zufang.model.BasicUserReg;
 import nz.co.zufang.model.User;
+import nz.co.zufang.model.UserCreate;
 import nz.co.zufang.repository.UserRepository;
 
 @Service
@@ -40,7 +41,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public GenericResponse register(BasicUserReg basicUserReg) {
+	public GenericResponse register(UserCreate basicUserReg) {
 
 		User tmpUser = userRepository.findUserByUsername(basicUserReg.getUsername());
 		if (tmpUser != null)
@@ -49,10 +50,11 @@ public class UserServiceImpl implements UserService {
 		User tmpEmail = userRepository.findUserByEmail(basicUserReg.getEmail());
 		if (tmpEmail != null)
 			throw new UserExistException();
-
+		PasswordEncoder a = new BCryptPasswordEncoder();
+		
 		User user = new User();
 		user.setUsername(basicUserReg.getUsername());
-		user.setPassword(basicUserReg.getPassword());
+		user.setPassword(a.encode(basicUserReg.getPassword()));
 		user.setEmail(basicUserReg.getEmail());
 		user.setImAccount(basicUserReg.getImAccount());
 		user.setPhone(basicUserReg.getPhone());
@@ -68,20 +70,6 @@ public class UserServiceImpl implements UserService {
 		response.setToken(uuid.toString());
 		
 		return response;
-	}
-
-	@Override
-	public User updateUser(UserUpdateRequest userUpdateRequest) {
-		User user = userRepository.findOne(userUpdateRequest.getUid());
-		user.setUid(userUpdateRequest.getUid());
-		user.setUsername(userUpdateRequest.getUsername());
-		user.setPassword(userUpdateRequest.getPassword());
-		user.setEmail(userUpdateRequest.getEmail());
-		user.setImAccount(userUpdateRequest.getImAccount());
-		user.setPhone(userUpdateRequest.getPhone());
-		user.setAddress(userUpdateRequest.getAddress());
-		user = userRepository.save(user);
-		return user;
 	}
 
 	@Override

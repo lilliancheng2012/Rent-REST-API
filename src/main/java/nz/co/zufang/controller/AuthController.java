@@ -1,5 +1,7 @@
 package nz.co.zufang.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,16 +18,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import nz.co.zufang.model.BasicUserLogin;
+import nz.co.zufang.model.CerberusUser;
 import nz.co.zufang.model.UserCreate;
 import nz.co.zufang.service.UserService;
 import nz.co.zufang.spec.TokenUtils;
 
-/**
- * Created by Lillian on 2/25/2016.
- */
 @RestController
-@RequestMapping("/api")
-public class UserController {
+@RequestMapping("/auth")
+public class AuthController {
 
 	@Autowired
 	UserService userService;
@@ -43,7 +43,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ResponseEntity<String> login(@RequestBody BasicUserLogin userLogin, Device device) {
+	public ResponseEntity<?> login(@RequestBody BasicUserLogin userLogin, Device device) {
 
 		// Perform the authentication
 		Authentication authentication = this.authenticationManager.authenticate(
@@ -57,8 +57,21 @@ public class UserController {
 		// GenericResponse response =
 		// userService.authentication(userLogin.getUserName(),
 		// userLogin.getPassword());
-		return new ResponseEntity<String>(token, HttpStatus.OK);
+	    return ResponseEntity.ok(new AuthResponse(token));
 	}
 
+
+	@RequestMapping(value = "/refresh", method = RequestMethod.GET)
+	public ResponseEntity<?> authenticationRequest(HttpServletRequest request) {
+		String token = request.getHeader("X-Auth-Token");
+		String username = TokenUtils.getUsernameFromToken(token);
+		CerberusUser user = (CerberusUser) this.userDetailsService.loadUserByUsername(username);
+		if (TokenUtils.canTokenBeRefreshed(token, user.getLastPasswordReset())) {
+			String refreshedToken = TokenUtils.refreshToken(token);
+			return ResponseEntity.ok(new AuthResponse(refreshedToken));
+		} else {
+			return ResponseEntity.badRequest().body(null);
+		}
+	}
 
 }

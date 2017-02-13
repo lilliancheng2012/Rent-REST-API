@@ -59,10 +59,10 @@ public class TokenUtils {
     return expiration;
   }
 
-  public String getAudienceFromToken(String token) {
+  public static String getAudienceFromToken(String token) {
     String audience;
     try {
-      final Claims claims = this.getClaimsFromToken(token);
+      final Claims claims = getClaimsFromToken(token);
       audience = (String) claims.get("audience");
     } catch (Exception e) {
       audience = null;
@@ -112,9 +112,9 @@ public class TokenUtils {
     return audience;
   }
 
-  private Boolean ignoreTokenExpiration(String token) {
-    String audience = this.getAudienceFromToken(token);
-    return (this.AUDIENCE_TABLET.equals(audience) || this.AUDIENCE_MOBILE.equals(audience));
+  public static Boolean ignoreTokenExpiration(String token) {
+    String audience = getAudienceFromToken(token);
+    return (AUDIENCE_TABLET.equals(audience) || AUDIENCE_MOBILE.equals(audience));
   }
 
   public static String generateToken(UserDetails userDetails, Device device) {
@@ -133,17 +133,17 @@ public class TokenUtils {
       .compact();
   }
 
-  public Boolean canTokenBeRefreshed(String token, Date lastPasswordReset) {
-    final Date created = this.getCreatedDateFromToken(token);
-    return (!(this.isCreatedBeforeLastPasswordReset(created, lastPasswordReset)) && (!(this.isTokenExpired(token)) || this.ignoreTokenExpiration(token)));
+  public static Boolean canTokenBeRefreshed(String token, Date lastPasswordReset) {
+    final Date created = getCreatedDateFromToken(token);
+    return (!(isCreatedBeforeLastPasswordReset(created, lastPasswordReset)) && (!(isTokenExpired(token)) || ignoreTokenExpiration(token)));
   }
 
-  public String refreshToken(String token) {
+  public static String refreshToken(String token) {
     String refreshedToken;
     try {
-      final Claims claims = this.getClaimsFromToken(token);
-      claims.put("created", this.generateCurrentDate());
-      refreshedToken = this.generateToken(claims);
+      final Claims claims = getClaimsFromToken(token);
+      claims.put("created", generateCurrentDate());
+      refreshedToken = generateToken(claims);
     } catch (Exception e) {
       refreshedToken = null;
     }

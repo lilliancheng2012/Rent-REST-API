@@ -66,7 +66,7 @@ public class User {
     public User() {
     }
 
-    public User(BasicUserReg userReg) {
+    public User(UserCreate userReg) {
         this.username = userReg.getUsername();
         this.password = userReg.getPassword();
         this.email = userReg.getEmail();
