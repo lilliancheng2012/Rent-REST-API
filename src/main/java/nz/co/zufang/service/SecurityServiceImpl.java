@@ -9,7 +9,7 @@ public class SecurityServiceImpl implements SecurityService {
 
   @Override
   public Boolean hasProtectedAccess() {
-    return (SecurityContextHolder.getContext().getAuthentication().getAuthorities().contains(new SimpleGrantedAuthority("ADMIN")));
+    return (SecurityContextHolder.getContext().getAuthentication().getAuthorities().contains(new SimpleGrantedAuthority("admin")));
   }
 
 }

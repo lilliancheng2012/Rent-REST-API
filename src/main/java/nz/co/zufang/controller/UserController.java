@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,7 +34,7 @@ public class UserController {
 
 	@RequestMapping(value = "/users/{userId}", method = RequestMethod.GET)
 	@PreAuthorize("@securityService.hasProtectedAccess()")
-	public User getUser(@PathVariable String userId) {
+	public User getUser(@RequestHeader(value="X-Auth-Token") String header, @PathVariable String userId) {
 		return userService.findUser(userId);
 	}
 
