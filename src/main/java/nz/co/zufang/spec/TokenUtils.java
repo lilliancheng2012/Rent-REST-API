@@ -24,7 +24,8 @@ public class TokenUtils {
 
   public static String secret = "sssshhhh!";
 
-  public static Long expiration = 604800l;
+//  public static Long expiration = 604800l;
+  public static Long expiration = 60l;
 
   public static String getUsernameFromToken(String token) {
     String username;
