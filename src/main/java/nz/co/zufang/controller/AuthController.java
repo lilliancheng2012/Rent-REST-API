@@ -1,7 +1,5 @@
 package nz.co.zufang.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mobile.device.Device;
@@ -12,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,8 +53,7 @@ public class AuthController {
 
 
 	@RequestMapping(value = "/refresh", method = RequestMethod.GET)
-	public ResponseEntity<?> authenticationRequest(HttpServletRequest request) {
-		String token = request.getHeader("X-Auth-Token");
+	public ResponseEntity<?> authenticationRequest(@RequestHeader(value="X-Auth-Token") String token) {
 		String username = TokenUtils.getUsernameFromToken(token);
 		CerberusUser user = (CerberusUser) this.userDetailsService.loadUserByUsername(username);
 		if (TokenUtils.canTokenBeRefreshed(token, user.getLastPasswordReset())) {

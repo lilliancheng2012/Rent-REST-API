@@ -1,8 +1,6 @@
 package nz.co.zufang.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,9 +24,8 @@ public class UserController {
 	UserService userService;
 
 	@RequestMapping(value = "/users", method = RequestMethod.POST)
-	public ResponseEntity<GenericResponse> createUser(@RequestBody UserCreate userCreate) {
-		GenericResponse response = userService.register(userCreate);
-		return new ResponseEntity<GenericResponse>(response, HttpStatus.OK);
+	public User createUser(@RequestBody UserCreate userCreate) {
+		return userService.createUser(userCreate);
 	}
 
 

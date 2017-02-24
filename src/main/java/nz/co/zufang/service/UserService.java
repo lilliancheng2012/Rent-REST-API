@@ -10,7 +10,7 @@ public interface UserService {
 	
 	public GenericResponse authentication(String username, String password);
 	
-	public GenericResponse register(UserCreate basicUserReg);
+	public User createUser(UserCreate basicUserReg);
 
 	Boolean deleteUser(String id);
 	

@@ -57,8 +57,8 @@ public class User {
     private Date lastPostTime;
     @Column(name = "STATUS")
     private String status;
-    @Column(name = "AUTHORITIES")
-    private String authorities;
+    @Column(name = "ACCOUNTTYPE")
+    private AccountType accountType;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "LASTPASSWORDRESET")
     private Date lastPasswordReset;
@@ -202,12 +202,13 @@ public class User {
         this.status = status;
     }
 
-	public String getAuthorities() {
-		return authorities;
+
+	public AccountType getAccountType() {
+		return accountType;
 	}
 
-	public void setAuthorities(String authorities) {
-		this.authorities = authorities;
+	public void setAccountType(AccountType accountType) {
+		this.accountType = accountType;
 	}
 
 	public Date getLastPasswordReset() {

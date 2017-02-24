@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import nz.co.zufang.controller.GenericResponse;
 import nz.co.zufang.exception.NotFoundException;
 import nz.co.zufang.exception.UserExistException;
+import nz.co.zufang.model.AccountType;
 import nz.co.zufang.model.User;
 import nz.co.zufang.model.UserCreate;
 import nz.co.zufang.repository.UserRepository;
@@ -41,7 +42,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public GenericResponse register(UserCreate basicUserReg) {
+	public User createUser(UserCreate basicUserReg) {
 
 		User tmpUser = userRepository.findUserByUsername(basicUserReg.getUsername());
 		if (tmpUser != null)
@@ -59,17 +60,10 @@ public class UserServiceImpl implements UserService {
 		user.setImAccount(basicUserReg.getImAccount());
 		user.setPhone(basicUserReg.getPhone());
 		user.setAddress(basicUserReg.getAddress());
+		user.setAccountType(AccountType.STANDARD);
 
-		user = userRepository.save(user);
-		// TODO token would be created by Oauth2
-		UUID uuid = UUID.randomUUID();
-		GenericResponse response = new GenericResponse();
-		response.setCode("1000");
-		response.setUid(user.getUid());
-		response.setMessage("Register successfully");
-		response.setToken(uuid.toString());
+		return userRepository.save(user);
 		
-		return response;
 	}
 
 	@Override
