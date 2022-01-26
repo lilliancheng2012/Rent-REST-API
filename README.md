@@ -1,4 +1,4 @@
-# Rest-Rent-API 
+# Rest-Rent-API
 
 This project provides Backend APIs for properties rental websites , IOS and Android devices.
 
@@ -26,7 +26,8 @@ Run `mvn jacoco:report` to generate the code coverage report after executing the
 ![](https://raw.githubusercontent.com/lilliancheng2012/lilliancheng2012.github.io/master/public/img/posts/18-09-16/Jacoco.png)
 
 ### Run Rent Api Application
+
 Run `mvn spring-boot:run` to start Rest Rent APi service. After server starting, type `http://localhost:8080/api/swagger-ui.html` to check the APIs in the Swagger Pages.
 ![](https://raw.githubusercontent.com/lilliancheng2012/lilliancheng2012.github.io/master/public/img/posts/18-09-16/Swagger.PNG)
 
-
+David Test
