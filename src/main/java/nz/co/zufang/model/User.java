@@ -57,11 +57,16 @@ public class User {
     private Date lastPostTime;
     @Column(name = "STATUS")
     private String status;
+    @Column(name = "ACCOUNTTYPE")
+    private AccountType accountType;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "LASTPASSWORDRESET")
+    private Date lastPasswordReset;
 
     public User() {
     }
 
-    public User(BasicUserReg userReg) {
+    public User(UserCreate userReg) {
         this.username = userReg.getUsername();
         this.password = userReg.getPassword();
         this.email = userReg.getEmail();
@@ -196,5 +201,23 @@ public class User {
     public void setStatus(String status) {
         this.status = status;
     }
+
+
+	public AccountType getAccountType() {
+		return accountType;
+	}
+
+	public void setAccountType(AccountType accountType) {
+		this.accountType = accountType;
+	}
+
+	public Date getLastPasswordReset() {
+		return lastPasswordReset;
+	}
+
+	public void setLastPasswordReset(Date lastPasswordReset) {
+		this.lastPasswordReset = lastPasswordReset;
+	}
+	
 
 }

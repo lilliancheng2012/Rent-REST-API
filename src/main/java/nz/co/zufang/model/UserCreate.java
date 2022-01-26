@@ -3,7 +3,7 @@ package nz.co.zufang.model;
 /**
  * Created by Lillian on 12/03/16.
  */
-public class BasicUserReg {
+public class UserCreate {
 	
     private String email;
     private String username;
@@ -11,7 +11,8 @@ public class BasicUserReg {
     private String imAccount;
     private String phone;
     private String address;
-
+    private String authorities;
+    
     public String getEmail() {
         return email;
     }
@@ -57,4 +58,13 @@ public class BasicUserReg {
     public void setAddress(String address) {
         this.address = address;
     }
+
+	public String getAuthorities() {
+		return authorities;
+	}
+
+	public void setAuthorities(String authorities) {
+		this.authorities = authorities;
+	}
+    
 }
